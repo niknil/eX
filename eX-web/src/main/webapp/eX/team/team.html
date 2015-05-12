@@ -1,0 +1,56 @@
+<div>
+
+    <table class="table">
+        <thead>
+        <h1>{{team.name}}</h1>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div id="heroes">
+    <button type="button" class="btn btn-default" btn-sm data-ng-click="getHeroes(team.id)">Add Hero</button>
+
+        <table class="table">
+        <thead>
+        <th>Heroes</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="hero in team.heroes">
+            <td><a href="#/hero/{{hero.id}}">{{hero.alias}}</a></td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    </div>
+
+    <div id="addHeroes" style="display:none">
+        <h1>Add Heroes</h1>
+
+            <div>
+                <form ng-submit="submitHeroes()">
+                    <input type="submit" class="btn btn-default" value="Save"/>
+                </form>
+            </div>
+
+
+        <table class="borderless">
+            <thead>
+            <th>Alias</th>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="addHero in addHeroes">
+                <td><input type="checkbox" name="checkbox" value="{{addHero.alias}}" ng-model="addHero.flag"
+                           ng-change="toggleSelection(addHero)"> {{addHero.alias}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+</div>
