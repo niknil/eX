@@ -1,0 +1,8 @@
+com/eX/domain/HeroJson.class
+com/eX/mappers/Mapper.class
+com/eX/domain/HeroJson$Builder.class
+com/eX/controller/TeamController.class
+com/eX/controller/HomeController.class
+com/eX/domain/TeamJson.class
+com/eX/controller/HeroController.class
+com/eX/domain/TeamJson$Builder.class

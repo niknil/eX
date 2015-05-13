@@ -14,6 +14,7 @@ public class Team implements Serializable {
 
     private int id;
     private String name;
+
     private List<Hero> heroes;
 
     public Team() {
@@ -36,7 +37,7 @@ public class Team implements Serializable {
         this.id = id;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "teams")
+    @ManyToMany(targetEntity = Hero.class,fetch = FetchType.EAGER,mappedBy = "teams")
     public List<Hero> getHeroes() {
         return heroes;
     }
@@ -51,14 +52,6 @@ public class Team implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void addTeam(Hero hero){
-        if(heroes == null){
-            heroes = new ArrayList<Hero>();
-        }
-
-        heroes.add(hero);
     }
 
     public static Builder builder(){

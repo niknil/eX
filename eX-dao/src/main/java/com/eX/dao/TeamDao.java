@@ -56,9 +56,6 @@ public class TeamDao implements TeamRepo {
 
     @Override
     public void delete(Team team) {
-        team.setHeroes(new ArrayList<Hero>());
-        team = this.update(team);
-
         this.session().delete(team);
     }
 }

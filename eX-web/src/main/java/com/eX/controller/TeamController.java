@@ -41,36 +41,6 @@ public class TeamController {
         return mapper.teamToJson(returnTeam);
     }
 
-    @RequestMapping(value = "/hero/{teamId}", method = RequestMethod.PUT)
-    @ResponseBody
-    public void put(@RequestBody List<HeroJson> heroJson,@PathVariable("teamId") int teamId) {
-
-        Team team = exServiceClient.getTeam(teamId);
-
-        if(team == null){
-            throw new IllegalStateException("");
-        }
-        List<Hero> heroes = team.getHeroes();
-
-        for(HeroJson heroJs: heroJson){
-            heroes.add(mapper.JsonToHero(heroJs));
-        }
-
-        team.setHeroes(heroes);
-
-
-        for(Hero hero: heroes) {
-
-            hero.addTeam(team);
-            exServiceClient.editHero(hero);
-        }
-
-        exServiceClient.editTeam(team);
-
-
-
-    }
-
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     public List<TeamJson> getAll() {
@@ -151,6 +121,9 @@ public class TeamController {
         if(team == null){
             throw new IllegalStateException("");
         }
+
+
+
 
         exServiceClient.deleteTeam(team);
 

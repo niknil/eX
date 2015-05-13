@@ -62,10 +62,10 @@ public class ExServiceClientImpl implements ExServiceClient {
         return teamRepo.update(team);
     }
 
-    public List<Hero> getHeroesInTeam(int index){
-        return heroRepo.getHeroInTeams(index);
+    @Override
+    public List<Team> getTeams(Hero hero) {
+        return heroRepo.filteredTeams(hero);
     }
-
 
 
 }

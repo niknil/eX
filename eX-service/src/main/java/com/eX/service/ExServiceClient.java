@@ -30,7 +30,7 @@ public interface ExServiceClient {
 
     public Team editTeam(Team team);
 
-    public List<Hero> getHeroesInTeam(int index);
+    public List<Team> getTeams(Hero hero);
 
 
 }

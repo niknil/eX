@@ -53,14 +53,6 @@ public class HeroDao implements HeroRepo {
         return hero;
     }
 
-    public List<Hero> getHeroInTeams(int index) {
-
-        Query query = session().createQuery("from User user inner join user.cars car where car.id in (:carIds)");
-        query.setInteger("id", index);
-
-        return (List<Hero>) query.list();
-    }
-
     @Override
     public Hero update(Hero hero) {
         this.session().update(hero);
@@ -74,4 +66,34 @@ public class HeroDao implements HeroRepo {
         this.session().delete(hero);
         session().clear();
     }
+
+
+    @Override
+    public List<Team> filteredTeams(Hero hero) {
+
+        List<Team> filtered = new ArrayList<>();
+        List<Team> takeOut = hero.getTeams();
+        for(Team filter: takeOut){
+
+        for(Team team: teamRepo.getAll()){
+
+                if(team.getId() == filter.getId()){
+                    continue;
+                }
+                filtered.add(team);
+            }
+
+
+        }
+
+
+
+
+
+        return filtered;
+    }
+
+
+
+
 }

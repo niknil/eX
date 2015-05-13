@@ -66,7 +66,7 @@ public class Hero{
         return new Builder();
     }
 
-    @ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Team.class,cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(
             name="team_hero",
             joinColumns=@JoinColumn(name="hero_id"),

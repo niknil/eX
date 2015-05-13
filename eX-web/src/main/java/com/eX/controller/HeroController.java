@@ -97,8 +97,53 @@ public class HeroController {
 
     }
 
+    @RequestMapping(value = "/team/{heroId}", method=RequestMethod.GET)
+    @ResponseBody
+    public List<TeamJson> getTeams(@PathVariable("heroId") int heroId){
 
-    @RequestMapping(value = "/edit/{heroId}", method = RequestMethod.PUT)
+        Hero hero = exServiceClient.getHero(heroId);
+
+        if(hero == null){
+            throw new IllegalStateException("");
+        }
+
+        List<TeamJson> teams = new ArrayList<>();
+
+        for(Team team: exServiceClient.getTeams(hero)){
+                             teams.add(mapper.teamToJson(team));
+        }
+
+        return teams;
+
+
+    }
+
+    @RequestMapping(value = "/team/{heroId}", method=RequestMethod.PUT)
+    @ResponseBody
+    public HeroJson addTeam(@PathVariable("heroId") int heroId,@RequestBody TeamJson teamJson){
+
+        Hero hero = exServiceClient.getHero(heroId);
+
+        if(hero == null){
+            throw new IllegalStateException("");
+        }
+
+        Team team = exServiceClient.getTeam(teamJson.getId());
+
+
+
+
+        hero.addTeam(team);
+
+        hero = exServiceClient.editHero(hero);
+
+        return mapper.heroToJson(hero);
+
+
+    }
+
+
+    @RequestMapping(value = "/edit/{heroId}", method = RequestMethod.DELETE)
     public HeroJson delete(@PathVariable("heroId") int heroId,@RequestBody HeroJson heroJson) {
 
         Hero hero = exServiceClient.getHero(heroId);

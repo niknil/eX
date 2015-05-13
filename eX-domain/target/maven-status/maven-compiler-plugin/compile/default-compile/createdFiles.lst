@@ -1,0 +1,4 @@
+com/eX/domain/Hero.class
+com/eX/domain/Hero$Builder.class
+com/eX/domain/Team.class
+com/eX/domain/Team$Builder.class
