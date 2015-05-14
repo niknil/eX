@@ -20,7 +20,7 @@
         <tbody>
         <tr ng-repeat="team in hero.teams">
             <td><a href="#/team/{{team.id}}">{{team.name}}</a></td>
-            <td>{{team.description}}</td>
+            <td><button type="button" class="btn btn-default" data-ng-click="removeHeroFromTeam(team.id)">remove hero</button></td>
         </tr>
         </tbody>
     </table>

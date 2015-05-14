@@ -65,6 +65,24 @@
             });
         }
 
+        $scope.removeHeroFromTeam = function(teamId) {
+
+
+            $http({
+                method : 'DELETE',
+                url : 'http://localhost:8080/hero/edit/' + teamId,
+                data : $scope.hero,
+                headers: {
+                    'Content-Type': 'application/json'
+
+                }}).success(function() {
+
+                    $location.path('/hero/' + $scope.hero.id);
+
+
+                });
+        }
+
 
         $scope.init();
     }

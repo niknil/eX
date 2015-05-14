@@ -67,5 +67,7 @@ public class ExServiceClientImpl implements ExServiceClient {
         return heroRepo.filteredTeams(hero);
     }
 
-
+    public void removeHeroFromTeam(int teamId, int heroId){
+        heroRepo.removeHeroFromTeam(teamId,heroId);
+    }
 }

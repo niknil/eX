@@ -5,6 +5,7 @@ import com.eX.domain.Team;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -73,6 +74,12 @@ public class HeroDao implements HeroRepo {
 
         List<Team> filtered = new ArrayList<>();
         List<Team> takeOut = hero.getTeams();
+
+        if(takeOut.isEmpty()){
+              filtered = teamRepo.getAll();
+        }else{
+
+
         for(Team filter: takeOut){
 
         for(Team team: teamRepo.getAll()){
@@ -85,14 +92,19 @@ public class HeroDao implements HeroRepo {
 
 
         }
-
-
-
-
-
+        }
         return filtered;
     }
 
+    public void removeHeroFromTeam(int teamId, int heroId) {
+
+            Team team = (Team)session().get(Team.class, teamId);
+            Hero hero = (Hero)session().get(Hero.class, teamId);
+            team.getHeroes().remove(hero);
+            hero.getTeams().remove(team);
+            session().save(team);
+            session().save(hero);
+    }
 
 
 

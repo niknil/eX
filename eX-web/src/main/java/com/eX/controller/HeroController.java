@@ -143,22 +143,12 @@ public class HeroController {
     }
 
 
-    @RequestMapping(value = "/edit/{heroId}", method = RequestMethod.DELETE)
-    public HeroJson delete(@PathVariable("heroId") int heroId,@RequestBody HeroJson heroJson) {
+    @RequestMapping(value = "/edit/{teamId}", method = RequestMethod.DELETE)
+    public void deleteFromTeam(@PathVariable("teamId") int teamId, @RequestBody HeroJson heroJson) {
 
-        Hero hero = exServiceClient.getHero(heroId);
+        exServiceClient.removeHeroFromTeam(teamId,heroJson.getId());
 
-        if(hero == null){
-            throw new IllegalStateException("Can't be null");
-        }
-
-        mapper.JsonToHero(heroJson);
-
-        hero = exServiceClient.editHero(mapper.JsonToHero(heroJson));
-
-        return mapper.heroToJson(hero);
     }
-
 
 
 

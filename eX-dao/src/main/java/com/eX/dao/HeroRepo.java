@@ -18,5 +18,6 @@ public interface HeroRepo {
     Hero update(Hero entity);
     void delete(Hero entity);
     public List<Team> filteredTeams(Hero hero);
+    public void removeHeroFromTeam(int teamId, int heroId);
 
 }

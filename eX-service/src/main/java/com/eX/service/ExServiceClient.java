@@ -32,5 +32,5 @@ public interface ExServiceClient {
 
     public List<Team> getTeams(Hero hero);
 
-
+    public void removeHeroFromTeam(int teamId, int heroId);
 }
